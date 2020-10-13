@@ -1,0 +1,187 @@
+#include<bits/stdc++.h>
+using namespace std;
+#define mp make_pair
+#define itr(a) a.begin(),a.end()
+#define ll long long
+#define ull unsigned long long
+#define vc vector
+#define print(a) for(auto i:a)cout<<i<<' ';
+
+template<class A,class B>
+ostream & operator <<(ostream &stream,pair<A,B>pair)
+{
+stream<<'['<<pair.first<<','<<pair.second<<']';
+return stream;
+}
+template<class A>
+ostream & operator <<(ostream &stream,vector<A>vector)
+{
+for(auto&i:vector)cout<<i<<' ';
+cout<<endl;
+return stream;
+}
+template<class A>
+ostream & operator <<(ostream &stream,vector<vector<A>>vector)
+{
+for(auto&i:vector)cout<<i;
+return stream;
+}
+
+template<class t>
+void represent( t n)
+{
+t bit=(t)1<<(sizeof(t)*8-1);
+int count=0;
+do
+{
+cout<<(n&bit?'1':'0');
+n<<=1;
+count++;
+}
+while(n);
+count=sizeof(t)*8-count;
+while(count--)cout<<'0';
+cout<<endl;
+}
+template<typename T>
+T fsb(T i)
+{
+    T bit=1,answer_bit=0;
+    int count=32;
+    while(count--){if(bit&i)answer_bit=bit;bit<<=1;}
+    return answer_bit;
+}
+
+
+
+double c(int up,int down)
+{
+        down=min(down,up-down);
+        if(down==0)return 1.0;
+        double ans=1.0,u=up,d=down;
+        int cnt=down,c=cnt;
+        while(--cnt)u*=--up;
+        while(--c)d*=--down;
+        return u/d;
+
+
+}
+class LeetcodeInput
+{
+public:
+ofstream stream;
+LeetcodeInput()
+{
+srand(time(NULL));
+}
+~LeetcodeInput()
+{
+stream.close();
+}
+ll random()
+{
+return ((ull)rand()*rand()*rand()*rand())%UINT_MAX;
+}
+void fillArrayCases(int test_cases_count,int max_test_case_length,ll lower_inclusive_limit,ll upper_inclusive_limit)
+{
+stream.open("C:/Users/CSGO/Desktop/testCases.txt");
+
+ll difference = upper_inclusive_limit-lower_inclusive_limit+1;
+while(--test_cases_count)
+{
+int count=random()% max_test_case_length+1;
+stream<<"[";
+while(--count)stream<< lower_inclusive_limit+ random()%difference <<",";
+stream<< lower_inclusive_limit+ random()%difference;
+stream<<"]\n";
+}
+int count=random()% max_test_case_length+1;
+stream<<"[";
+while(--count)stream<< lower_inclusive_limit+ random()%difference <<",";
+stream<< lower_inclusive_limit+ random()%difference;
+stream<<"]";
+
+}
+void generateArray(int count,int lower_inclusive_limit,int upper_inclusive_limit)
+{
+stream.open("C:/Users/CSGO/Desktop/input_array.txt");
+int difference=upper_inclusive_limit-lower_inclusive_limit+1;
+stream<<"[";
+count--;
+while(count--)stream<< lower_inclusive_limit+ random()%difference <<",";
+stream<< lower_inclusive_limit+ random()%difference;
+stream<<"]";
+
+}
+void generateIntervals(int count,ll lower_inclusive_limit,ll upper_inclusive_limit)
+{
+stream.open("C:/Users/CSGO/Desktop/input_intervals.txt");
+long long difference=upper_inclusive_limit-lower_inclusive_limit+1;
+stream<<"[";
+count--;
+while(count--)
+{
+    long long int a=lower_inclusive_limit+ random()%difference;
+    long long difference_for_a=upper_inclusive_limit-a+1;
+    stream<<"["<<a<<","<<(a+random()%difference_for_a)<<"],";
+
+}
+
+    long long int a=lower_inclusive_limit+ random()%difference;
+    long long difference_for_a=upper_inclusive_limit-a+1;
+    stream<<"["<<a<<","<<(a+random()%difference_for_a)<<"]]";
+
+}
+void fillIntervalTestCases(int test_cases_count,int max_test_case_length,ll lower_inclusive_limit,ll upper_inclusive_limit)
+{
+    stream.open("C:/Users/CSGO/Desktop/testCases.txt");
+    long long difference=upper_inclusive_limit-lower_inclusive_limit+1;
+    while(--test_cases_count)
+    {
+    stream<<"[";
+    int count=random()%max_test_case_length + 1;
+    while(--count)
+    {
+    ll a=lower_inclusive_limit+random()%difference;
+    long long difference_for_a=upper_inclusive_limit-a+1;
+    stream<<"["<<a<<","<<(a+random()%difference_for_a)<<"],";
+    }
+    ll a=lower_inclusive_limit+random()%difference;
+    ll difference_for_a=upper_inclusive_limit-a+1;
+    stream<<"["<<a<<","<<(a+random()%difference_for_a)<<"]]\n";
+
+    }
+    int count=random()%max_test_case_length+1;
+    stream<<"[";
+    while(--count)
+    {
+    ll a=lower_inclusive_limit+random()%difference;
+    ll difference_for_a=upper_inclusive_limit-a+1;
+    stream<<"["<<a<<","<<(a+random()%difference_for_a)<<"]"<<",";
+    }
+    ll a=lower_inclusive_limit+random()%difference;
+    ll difference_for_a=upper_inclusive_limit-a+1;
+    stream<<"["<<a<<","<<(a+random()%difference_for_a)<<"]]";
+
+
+}
+void generateNumbers(int inclusive_low,int inclusive_high)
+{
+
+stream.open("C:/Users/CSGO/Desktop/input_numbers.txt");
+
+for(int i=inclusive_low;i<inclusive_high;i++)
+    stream<<i<<"\n";
+stream<<inclusive_high;
+
+}
+
+};
+
+int main()
+{
+
+LeetcodeInput a;
+a.fillIntervalTestCases(30,10000,INT_MIN,INT_MAX);
+}
+
